@@ -1,20 +1,25 @@
-auth:
-  adminPassword: "admin123"
+replicaCount: 1
 
 ingress:
-  hostname: dev-auth.sonth-my-app.com
+  enabled: true
+  className: nginx
   annotations:
     cert-manager.io/cluster-issuer: "selfsigned"
-  extraTls:
-    - hosts:
+  hosts:
+    - host: dev-auth.sonth-my-app.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: keycloak-dev-tls
+      hosts:
         - dev-auth.sonth-my-app.com
-      secretName: keycloak-dev-tls
+
+auth:
+  adminPassword: "dev123"
 
 postgresql:
-  postgresqlPassword: dev123
-
-persistence:
-  size: 4Gi
+  postgresqlPassword: "dev123"
 
 resources:
   requests:
