@@ -42,7 +42,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             {{- if .Values.keycloak.extraArgs }}
-            {{ toYaml .Values.keycloak.extraArgs | nindent 4 }}
+            {{- range .Values.keycloak.extraArgs  }}
+            - {{ . }}
+            {{- end }}
             {{- else }}
             - start
             {{- end }}
@@ -51,7 +53,7 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           {{- with .Values.livenessProbe }}
-          livenessProbe:
+          livenessP	robe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.readinessProbe }}
