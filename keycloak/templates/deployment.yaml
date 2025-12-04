@@ -40,6 +40,12 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+	  args:
+            {{- if .Values.keycloak.extraArgs }}
+            {{- toYaml .Values.keycloak.extraArgs | nindent 6 }}
+            {{- else }}
+            start
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
