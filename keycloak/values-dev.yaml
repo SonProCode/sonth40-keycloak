@@ -28,3 +28,6 @@ resources:
   limits:
     cpu: 500m
     memory: 512Mi
+
+keycloak:
+  extraArgs: ["start-dev"]
