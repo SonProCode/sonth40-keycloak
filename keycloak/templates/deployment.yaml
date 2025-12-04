@@ -42,9 +42,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             {{- if .Values.keycloak.extraArgs }}
-            {{- toYaml .Values.keycloak.extraArgs | nindent 6 }}
+            {{ toYaml .Values.keycloak.extraArgs | nindent 4 }}
             {{- else }}
-            start
+            - start
             {{- end }}
           ports:
             - name: http
