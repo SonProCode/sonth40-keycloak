@@ -25,7 +25,7 @@ serviceAccount:
   name: ""
 
 postgresql:
-  enabled: true
+  enabled: false
   postgresqlUsername: keycloak
   postgresqlPassword: keycloak
   postgresqlDatabase: keycloak
