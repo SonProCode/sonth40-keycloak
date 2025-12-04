@@ -1,0 +1,48 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/keycloak/keycloak
+  tag: "21.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+auth:
+  adminUser: admin
+  adminPassword: "admin123"
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
+
+serviceAccount:
+  create: true
+  name: ""
+
+postgresql:
+  enabled: true
+  postgresqlUsername: keycloak
+  postgresqlPassword: keycloak
+  postgresqlDatabase: keycloak
+  persistence:
+    enabled: true
+    size: 4Gi
+    storageClass: ""
+
+persistence:
+  enabled: true
+  size: 4Gi
+  storageClass: ""
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
