@@ -48,6 +48,10 @@ spec:
             {{- else }}
             - start
             {{- end }}
+          env:
+            {{- if .Values.keycloak.extraEnv }}
+            {{- toYaml .Values.keycloak.extraEnv | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
