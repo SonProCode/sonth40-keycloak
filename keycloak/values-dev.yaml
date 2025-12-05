@@ -10,6 +10,9 @@ ingress:
     nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
     nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
     nginx.ingress.kubernetes.io/proxy-set-headers: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      add_header Content-Security-Policy "frame-src * 'self' data: blob:; frame-ancestors *; object-src 'none';" always;
+      add_header X-Frame-Options "ALLOWALL" always;
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
