@@ -10,13 +10,11 @@ ingress:
     nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
     nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
     nginx.ingress.kubernetes.io/proxy-set-headers: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
-        - path: /(.*)
-          pathType: ImplementationSpecific
+        - path: /
+          pathType: Prefix
   tls:
     - secretName: keycloak-dev-tls
       hosts:
