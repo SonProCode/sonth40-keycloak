@@ -16,7 +16,7 @@ ingress:
     - host: dev-auth.sonth-my-app.com
       paths:
         - path: /(.*)
-          pathType: Prefix
+          pathType: ImplementationSpecific
   tls:
     - secretName: keycloak-dev-tls
       hosts:
