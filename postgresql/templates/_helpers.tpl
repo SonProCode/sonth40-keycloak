@@ -1,9 +1,9 @@
-{{/* Return chart name */}}
+{{/* Chart name */}}
 {{- define "postgresql.name" -}}
 {{- default .Chart.Name .Values.nameOverride -}}
 {{- end -}}
 
-{{/* Generate fullname */}}
+{{/* Full name: release-name + name (safe length) */}}
 {{- define "postgresql.fullname" -}}
 {{- printf "%s-%s" .Release.Name (include "postgresql.name" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
@@ -23,3 +23,15 @@ app.kubernetes.io/name: {{ include "postgresql.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
+{{/* ServiceAccount name resolver used by templates */}}
+{{- define "postgresql.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create -}}
+{{- if .Values.serviceAccount.name }}
+{{- .Values.serviceAccount.name }}
+{{- else }}
+{{- include "postgresql.fullname" . }}
+{{- end }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end -}}
+{{- end -}}
