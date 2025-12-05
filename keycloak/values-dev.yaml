@@ -43,15 +43,13 @@ keycloak:
       value: dev123
     - name: KC_PROXY
       value: edge
-    - name: KC_HOSTNAME
-      value: dev-auth.sonth-my-app.com:30443
-    - name: KC_HOSTNAME_PORT
-      value: "30443"
     - name: KC_PROXY_ADDRESS_FORWARDING
-      value: "true" 
+      value: "true"
     - name: KC_HOSTNAME_STRICT
-      value: "false" 
+      value: "false"
     - name: KC_HOSTNAME_STRICT_HTTPS
       value: "false"
-    - name: KC_HTTPS_URL
+    - name: KC_HOSTNAME_URL
+      value: "https://dev-auth.sonth-my-app.com:30443"
+    - name: KC_HOSTNAME_ADMIN_URL
       value: "https://dev-auth.sonth-my-app.com:30443"
