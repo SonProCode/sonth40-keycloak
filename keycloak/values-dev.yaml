@@ -47,3 +47,9 @@ keycloak:
       value: dev-auth.sonth-my-app.com
     - name: KC_HOSTNAME_PORT
       value: "30443"
+    - name: KC_PROXY_ADDRESS_FORWARDING
+      value: "true" 
+    - name: KC_HOSTNAME_STRICT
+      value: "false" 
+    - name: KC_HOSTNAME_STRICT_HTTPS
+      value: "false"
