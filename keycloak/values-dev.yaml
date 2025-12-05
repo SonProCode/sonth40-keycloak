@@ -7,6 +7,8 @@ ingress:
     cert-manager.io/cluster-issuer: "selfsigned"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
+    nginx.ingress.kubernetes.io/x-forwarded-port: "443"
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
