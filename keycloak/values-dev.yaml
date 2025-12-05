@@ -31,7 +31,7 @@ postgresql:
   persistence:
     enabled: true
     size: 4Gi
-    storageClass: "standard"
+    storageClass: "local-path"
 
 resources:
   requests:
