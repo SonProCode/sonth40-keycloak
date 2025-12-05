@@ -60,9 +60,6 @@ keycloak:
       value: "https://dev-auth.sonth-my-app.com:30443"
     - name: KC_HOSTNAME_ADMIN_URL
       value: "https://dev-auth.sonth-my-app.com:30443"
-    - name: KC_DB_URL
-      value: "jdbc:postgresql://keycloak-dev-postgresql:5432/keycloak"
-    - name: KC_DB_USERNAME
-      value: "keycloak"
-    - name: KC_DB_PASSWORD
-      value: "dev123"
+  extraEnvFrom:
+    - configMapRef:
+        name: keycloak-db-config
