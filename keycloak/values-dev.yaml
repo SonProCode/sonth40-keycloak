@@ -9,6 +9,7 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
     nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
+   nginx.ingress.kubernetes.io/proxy-set-headers: "true"
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
