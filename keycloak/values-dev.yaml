@@ -10,8 +10,6 @@ ingress:
     nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
     nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
     nginx.ingress.kubernetes.io/proxy-set-headers: "true"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Host dev-auth.sonth-my-app.com;
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
@@ -37,7 +35,7 @@ resources:
     memory: 512Mi
 
 keycloak:
-  extraArgs: ["start-dev"]
+  extraArgs: ["start"]
   extraEnv:
     - name: KEYCLOAK_ADMIN
       value: admin
