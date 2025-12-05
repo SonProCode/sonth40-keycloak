@@ -5,6 +5,8 @@ ingress:
   className: nginx
   annotations:
     cert-manager.io/cluster-issuer: "selfsigned"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
   hosts:
     - host: dev-auth.sonth-my-app.com
       paths:
@@ -36,3 +38,5 @@ keycloak:
       value: admin
     - name: KEYCLOAK_ADMIN_PASSWORD
       value: dev123
+    - name: KC_PROXY
+      value: edge
