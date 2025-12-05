@@ -32,12 +32,7 @@ postgresql:
   persistence:
     enabled: true
     size: 4Gi
-    storageClass: ""
-
-persistence:
-  enabled: true
-  size: 4Gi
-  storageClass: ""
+    storageClass: "standard"
 
 resources:
   requests:
