@@ -24,16 +24,6 @@ serviceAccount:
   create: true
   name: ""
 
-postgresql:
-  enabled: false
-  postgresqlUsername: keycloak
-  postgresqlPassword: keycloak
-  postgresqlDatabase: keycloak
-  persistence:
-    enabled: true
-    size: 4Gi
-    storageClass: "standard"
-
 resources:
   requests:
     cpu: 200m
