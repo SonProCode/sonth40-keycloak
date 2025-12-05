@@ -42,3 +42,7 @@ keycloak:
       value: dev123
     - name: KC_PROXY
       value: edge
+    - name: KC_HOSTNAME
+      value: dev-auth.sonth-my-app.com
+    - name: KC_HOSTNAME_PORT
+      value: "30443"
