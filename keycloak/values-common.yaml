@@ -32,6 +32,9 @@ resources:
     cpu: 500m
     memory: 512Mi
 
+postgresql:
+  enabled: false
+
 keycloak:
   extraArgs: ["start"]
 
