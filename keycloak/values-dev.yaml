@@ -23,16 +23,6 @@ ingress:
 auth:
   adminPassword: "dev123"
 
-postgresql:
-  enabled: true
-  postgresqlUsername: keycloak
-  postgresqlPassword: "dev123"
-  postgresqlDatabase: keycloak
-  persistence:
-    enabled: true
-    size: 4Gi
-    storageClass: "local-path"
-
 resources:
   requests:
     cpu: 200m
