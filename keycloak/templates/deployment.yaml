@@ -52,6 +52,11 @@ spec:
             {{- if .Values.keycloak.extraEnv }}
             {{- toYaml .Values.keycloak.extraEnv | nindent 12 }}
             {{- end }}
+          envFrom:
+            {{- range .Values.keycloak.extraEnvFrom }}
+            - configMapRef:
+                name: {{ .configMapRef.name }} 
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
