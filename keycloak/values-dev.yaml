@@ -26,10 +26,10 @@ auth:
 resources:
   requests:
     cpu: 200m
-    memory: "2Gi"
+    memory: "1Gi"
   limits:
     cpu: 500m
-    memory: "4Gi"
+    memory: "2Gi"
 
 keycloak:
   extraArgs:
@@ -59,6 +59,8 @@ keycloak:
   extraEnvFrom:
     - configMapRef:
         name: keycloak-db-config
+    - secretRef:
+        name: keycloak-db-secret
 
 livenessProbe:
   httpGet:
