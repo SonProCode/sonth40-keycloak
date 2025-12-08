@@ -34,6 +34,8 @@ resources:
 keycloak:
   extraArgs:
     - start
+    - --optimized
+    - --auto-build
   extraEnv:
     - name: KEYCLOAK_ADMIN
       value: admin
