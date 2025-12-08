@@ -93,13 +93,3 @@ secret:
     username: "keycloak"
     password: "prod123"
 
-certificate:
-  enabled: true
-  name: keycloak-prod-tls
-  namespace: keycloak-prod
-  secretName: keycloak-prod-tls
-  issuerName: selfsigned
-  issuerKind: ClusterIssuer
-  commonName: prod-auth.sonth-my-app.com
-  dnsNames:
-    - prod-auth.sonth-my-app.com
