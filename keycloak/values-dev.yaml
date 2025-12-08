@@ -36,6 +36,7 @@ keycloak:
     - start
     - --optimized
     - --auto-build
+    - --db=postgres
   extraEnv:
     - name: KEYCLOAK_ADMIN
       value: admin
