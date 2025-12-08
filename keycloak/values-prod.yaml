@@ -90,6 +90,6 @@ configMap:
 secret:
   enabled: true
   stringData:
-    username: "keycloak"
-    password: "dev123"
+    username: "keycloak-prod"
+    password: "prod123"
 
