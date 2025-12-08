@@ -1,0 +1,16 @@
+# keycloak/templates/configmap.yaml
+{{- if .Values.configMap }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-db-config
+  labels:
+    {{- include "keycloak.labels" . | nindent 4 }}
+data:
+  # Lấy các biến cấu hình DB từ .Values.configMap.data
+  KC_DB: "{{ .Values.configMap.data.dbVendor }}"
+  KC_DB_URL_HOST: "{{ .Values.configMap.data.dbHost }}"
+  KC_DB_URL_PORT: "{{ .Values.configMap.data.dbPort | quote }}"
+  KC_DB_URL_DATABASE: "{{ .Values.configMap.data.dbName }}"
+  KC_DB_URL: "jdbc:postgresql://{{ .Values.configMap.data.dbHost }}:{{ .Values.configMap.data.dbPort }}/{{ .Values.configMap.data.dbName }}"
+{{- end }}

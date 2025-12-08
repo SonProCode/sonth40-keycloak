@@ -78,3 +78,17 @@ livenessProbe:
   initialDelaySeconds: 300
   periodSeconds: 10
   failureThreshold: 6
+
+configMap:
+  enabled: true
+  data:
+    dbVendor: "postgres"
+    dbHost: "postgres-dev-postgresql.dev.svc.cluster.local"
+    dbPort: 5432
+    dbName: "keycloak"
+
+secret:
+  enabled: true
+  stringData:
+    username: "keycloak"
+    password: "dev123"
