@@ -9,9 +9,13 @@ spec:
   issuerRef:
     name: {{ .Values.certificate.issuerName | default "selfsigned" }}
     kind: {{ .Values.certificate.issuerKind | default "ClusterIssuer" }}
-  commonName: {{ .Values.certificate.commonName | default "dev.sonth-my-app.com" }}
+  {{- if .Values.certificate.commonName }}
+  commonName: {{ .Values.certificate.commonName }}
+  {{- end }}
+  {{- if .Values.certificate.dnsNames }}
   dnsNames:
-{{- range .Values.certificate.dnsNames }}
+    {{- range .Values.certificate.dnsNames }}
     - {{ . | quote }}
-{{- end }}
+    {{- end }}
+  {{- end }}
 {{- end }}
