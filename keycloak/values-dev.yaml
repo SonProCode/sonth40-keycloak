@@ -32,7 +32,9 @@ resources:
     memory: "4Gi"
 
 keycloak:
-  extraArgs: ["start"]
+  extraArgs:
+    - start
+    - --optimized
   extraEnv:
     - name: KEYCLOAK_ADMIN
       value: admin
