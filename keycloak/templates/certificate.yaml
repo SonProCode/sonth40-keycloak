@@ -12,6 +12,6 @@ spec:
   commonName: {{ .Values.certificate.commonName | default "dev.sonth-my-app.com" }}
   dnsNames:
 {{- range .Values.certificate.dnsNames }}
-    - {{ . }}
+    - {{ . | quote }}
 {{- end }}
 {{- end }}
