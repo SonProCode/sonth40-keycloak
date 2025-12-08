@@ -91,5 +91,5 @@ secret:
   enabled: true
   stringData:
     username: "keycloak"
-    password: "prod123"
+    password: "dev123"
 
