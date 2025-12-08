@@ -92,3 +92,14 @@ secret:
   stringData:
     username: "keycloak"
     password: "dev123"
+
+certificate:
+  enabled: true
+  name: keycloak-dev-tls
+  namespace: keycloak-dev
+  secretName: keycloak-dev-tls
+  issuerName: selfsigned
+  issuerKind: ClusterIssuer
+  commonName: dev-auth.sonth-my-app.com
+  dnsNames:
+    - dev-auth.sonth-my-app.com
