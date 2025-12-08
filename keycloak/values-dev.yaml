@@ -64,17 +64,17 @@ keycloak:
 readinessProbe:
   httpGet:
     path: /health/ready
-    port: 8443       # HTTPS default
-    scheme: HTTPS
-  initialDelaySeconds: 120
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 300
   periodSeconds: 10
   failureThreshold: 10
 
 livenessProbe:
   httpGet:
     path: /health/live
-    port: 8443
-    scheme: HTTPS
-  initialDelaySeconds: 120
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 300
   periodSeconds: 10
   failureThreshold: 6
