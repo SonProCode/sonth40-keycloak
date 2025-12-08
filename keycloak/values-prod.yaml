@@ -83,7 +83,7 @@ configMap:
   enabled: true
   data:
     dbVendor: "postgres"
-    dbHost: "postgres-dev-postgresql.dev.svc.cluster.local"
+    dbHost: "postgres-prod-postgresql.keycloak-prod.svc.cluster.local"
     dbPort: 5432
     dbName: "keycloak-prod"
 
