@@ -1,29 +1,105 @@
-## PROD environment overrides
-
 replicaCount: 2
 
-auth:
-  adminPassword: "admin123"
-
 ingress:
-  hostname: auth.sonth-my-app.com
+  enabled: true
+  className: nginx
   annotations:
-    cert-manager.io/cluster-issuer: "prod-ca-issuer"
-  extraTls:
-    - hosts:
-        - auth.sonth-my-app.com
-      secretName: keycloak-prod-tls
+    cert-manager.io/cluster-issuer: "selfsigned"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
+    nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
+    nginx.ingress.kubernetes.io/proxy-set-headers: "true"
+  hosts:
+    - host: prod-auth.sonth-my-app.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: keycloak-prod-tls
+      hosts:
+        - prod-auth.sonth-my-app.com
 
-postgresql:
-  postgresqlPassword: prod123
-
-persistence:
-  size: 8Gi
+auth:
+  adminPassword: "prod123"
 
 resources:
   requests:
-    cpu: 500m
-    memory: 1Gi
+    cpu: 200m
+    memory: "1Gi"
   limits:
-    cpu: 1
-    memory: 2Gi
+    cpu: 500m
+    memory: "2Gi"
+
+keycloak:
+  extraArgs:
+    - start
+  extraEnv:
+    - name: KEYCLOAK_ADMIN
+      value: admin
+    - name: KEYCLOAK_ADMIN_PASSWORD
+      value: prod123
+    - name: KC_PROXY
+      value: edge
+    - name: KC_PROXY_ADDRESS_FORWARDING
+      value: "true"
+    - name: KC_HOSTNAME_STRICT
+      value: "false"
+    - name: KC_HOSTNAME_STRICT_HTTPS
+      value: "false"
+    - name: KC_HOSTNAME_URL
+      value: "https://prod-auth.sonth-my-app.com:30443"
+    - name: KC_HOSTNAME_ADMIN_URL
+      value: "https://prod-auth.sonth-my-app.com:30443"
+    - name: KC_HEALTH_ENABLED
+      value: "true"
+    - name: KC_METRICS_ENABLED
+      value: "true"
+  extraEnvFrom:
+    - configMapRef:
+        name: keycloak-db-config
+    - secretRef:
+        name: keycloak-db-secret
+
+readinessProbe:
+  httpGet:
+    path: /health/ready
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 300
+  periodSeconds: 10
+  failureThreshold: 10
+
+livenessProbe:
+  httpGet:
+    path: /health/live
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 300
+  periodSeconds: 10
+  failureThreshold: 6
+
+configMap:
+  enabled: true
+  data:
+    dbVendor: "postgres"
+    dbHost: "postgres-dev-postgresql.dev.svc.cluster.local"
+    dbPort: 5432
+    dbName: "keycloak-prod"
+
+secret:
+  enabled: true
+  stringData:
+    username: "keycloak"
+    password: "prod123"
+
+certificate:
+  enabled: true
+  name: keycloak-prod-tls
+  namespace: keycloak-prod
+  secretName: keycloak-prod-tls
+  issuerName: selfsigned
+  issuerKind: ClusterIssuer
+  commonName: prod-auth.sonth-my-app.com
+  dnsNames:
+    - prod-auth.sonth-my-app.com
