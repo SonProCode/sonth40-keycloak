@@ -54,8 +54,13 @@ spec:
             {{- end }}
           envFrom:
             {{- range .Values.keycloak.extraEnvFrom }}
-            - configMapRef:
-                name: {{ .configMapRef.name }} 
+            - {{- if .configMapRef }}
+                configMapRef:
+                  name: {{ .configMapRef.name }}
+              {{- else if .secretRef }}
+                secretRef:
+                  name: {{ .secretRef.name }}
+              {{- end }}
             {{- end }}
           ports:
             - name: http
