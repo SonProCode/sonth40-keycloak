@@ -7,8 +7,8 @@ ingress:
     cert-manager.io/cluster-issuer: "selfsigned"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
-    nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
+    #nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
+    #nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
     nginx.ingress.kubernetes.io/proxy-set-headers: "true"
   hosts:
     - host: prod-auth.sonth-my-app.com
@@ -48,9 +48,9 @@ keycloak:
     - name: KC_HOSTNAME_STRICT_HTTPS
       value: "false"
     - name: KC_HOSTNAME_URL
-      value: "https://prod-auth.sonth-my-app.com:30443"
+      value: "https://prod-auth.sonth-my-app.com"
     - name: KC_HOSTNAME_ADMIN_URL
-      value: "https://prod-auth.sonth-my-app.com:30443"
+      value: "https://prod-auth.sonth-my-app.com"
     - name: KC_HEALTH_ENABLED
       value: "true"
     - name: KC_METRICS_ENABLED
