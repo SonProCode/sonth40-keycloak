@@ -10,6 +10,10 @@ ingress:
     #nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
     #nginx.ingress.kubernetes.io/x-forwarded-port: "30443"
     nginx.ingress.kubernetes.io/proxy-set-headers: "true"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "keycloak"
+    nginx.ingress.kubernetes.io/session-cookie-path: "/"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "86400"
   hosts:
     - host: prod-auth.sonth-my-app.com
       paths:
